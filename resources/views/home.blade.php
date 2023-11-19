@@ -12,6 +12,25 @@
         <button>Log out</button>
     </form>
 
+    <div style="border: 3px solid black">
+      <h2>Create new form</h2>
+      <form action="/create-post" METHOD="POST">
+        @csrf
+        <input type="text" name="title" placeholder="title" />
+        <textarea type="text" name="body" placeholder="body content.."></textarea>
+        <button>Save Post</button>
+      </form>
+    </div>
+
+    <div style="border: 3px solid black">
+      <h2>All posts</h2>
+      @foreach($posts as $post)
+    <div style="background-color:gray; padding:10px; margin:10px;">
+<h3>{{$post['title']}}</div>
+<div>{{$post['body']}}</div>
+      @endforeach
+    </div>
+
     @else
     <div style="border: 3px solid black">
         <h2>Register</h2>
