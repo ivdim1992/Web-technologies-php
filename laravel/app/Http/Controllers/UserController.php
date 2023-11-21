@@ -30,7 +30,7 @@ class UserController extends Controller
         $payload['password'] = bcrypt($payload['password']);
         $user = User::create($payload);
         auth()->login($user);
-        return redirect('/');
+       return $user;
     }
 
     public function logout() {
