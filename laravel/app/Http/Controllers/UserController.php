@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -17,7 +18,9 @@ class UserController extends Controller
         if(auth()->attempt(['name' => $payload['loginname'], 'password' => $payload['loginpassword']])) {
             $request->session()->regenerate();
         }
-        return redirect('/');
+
+        $user = Auth::user();
+        return response()->json($user, 200);
     }
 
     public function register(Request $request) {
