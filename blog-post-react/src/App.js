@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 import Login from "./Login/Login";
-import Posts from "./Posts";
+import Posts from "./Posts/Posts";
 import Register from "./Register/Register";
 
 import React from "react";

@@ -48,7 +48,9 @@ class PostController extends Controller
         $payload['body'] = strip_tags($payload['body']);
         $payload['user_id'] = auth()->id();
 
-        Post::create($payload);
-        return redirect('/');
+         Post::create($payload);
+         return redirect('/');
+        //  $posts = Post::where('user_id', auth()->id())->get();
+        // return response()->json($posts, 200);
     }
 }

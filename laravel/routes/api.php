@@ -20,6 +20,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/posts', function () {
+    $posts = [];
+
+    if(auth()->check()) {
+        // take the posts by user auth()->user() returns current user
+        $posts = auth()->user()->userPosts()->latest()->get();
+    }
+    // for all posts
+    // $posts = Post::all();
+
+    // get post per current user
+    // $posts = Post::where('user_id', auth()->id())->get();
+
+    return response()->json($posts, 200);
+});
+
 
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);

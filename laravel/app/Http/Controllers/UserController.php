@@ -20,6 +20,7 @@ class UserController extends Controller
         }
 
         $user = Auth::user();
+        return redirect('/');
         return response()->json($user, 200);
     }
 
@@ -33,7 +34,8 @@ class UserController extends Controller
         $payload['password'] = bcrypt($payload['password']);
         $user = User::create($payload);
         auth()->login($user);
-       return $user;
+        return redirect('/');
+        return response()->json($user, 200);
     }
 
     public function logout() {

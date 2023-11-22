@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -22,6 +24,8 @@ function Login() {
     const { name, email, id } = user;
 
     sessionStorage.setItem("user", JSON.stringify({ name, email, id }));
+
+    navigate("/posts");
   };
 
   return (
@@ -33,6 +37,7 @@ function Login() {
             <label>Username</label>
             <input
               type="text"
+              required
               className="form-control mt-1"
               placeholder="Enter name"
               value={username}
@@ -46,6 +51,7 @@ function Login() {
             <input
               type="password"
               className="form-control mt-1"
+              required
               placeholder="Enter password"
               value={password}
               onChange={(e) => {
